@@ -1,0 +1,46 @@
+<div>
+<style type="text/css">
+    ul li {
+        list-style: none;
+    }
+</style>
+    <div class="wrap-label select-level">
+
+        <a href="javascript:void(0)" ng-click="toggleSelectMenu($event)" class="text-show-action">
+            {{text}}
+            <i class="fa fa-angle-down pull-right"></i>
+        </a>
+
+        <div class="select-level-modal collapse">
+            <div class="js-select-menu-deferred-content">
+                <div class="select-menu-filters">
+                </div>
+                <div id="select-level" class="select-menu-list label-select-menu">
+                    <script type="text/ng-template" id="subSelect">
+                        <a>
+                            <i class="icon-folder-{{value.id}} fa fa-folder" data-toggle="collapse" data-target="#child-category-{{value.id}}" ng-click="showSubSelect($event)" ></i>
+                        </a>
+
+                        <a ng-if="currentCategory.id != value.id" class="show-sub-select show-sub-select-{{value.id}}" ng-click="selectedItem(value, $event)">
+                            <span class="name-select item-{{value.id}}">{{value.name}}</span>
+                        </a>
+
+                        <a ng-if="currentCategory.id == value.id" class="show-sub-select show-sub-select-{{value.id}}">
+                            <span class="name-select item-{{value.id}}">{{value.name}}</span>
+                        </a>
+
+                        <ul ng-if="value.subFolder" id="child-category-{{value.id}}" class="sub-select-{{value.id}} collapse">
+                            <li class="select-multil" ng-repeat="(key, value) in value.subFolder | orderBy:'name'" ng-include="'subSelect'"></li>
+                        </ul>
+                    </script>
+                    <ul class="select-menu-parrent">
+                        <li id="select-{{index}}" class="select-menu-item" ng-repeat="(index, value) in items | orderBy:'name'" ng-include="'subSelect'" onload="currentIndex.value = index"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="select-menu-loading-overlay"></div>
+        </div>
+    </div>
+</div>
+
+

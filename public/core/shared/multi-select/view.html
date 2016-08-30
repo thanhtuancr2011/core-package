@@ -1,0 +1,29 @@
+<div class="multi-select-p">
+   	<div class="panel-body">
+		<div  class="col-xs-12 col-sm-4 col-md-5 col-lg-5 box-parent-select ">
+			<h5 class="strong text-uppercase">Available:</h5>
+			<select data-scrollable multiple="multiple" data-ng-model="selectedItemFrom">
+				<optgroup label="{{!placeholder? 'Permissions': placeholder}}">
+					<option class="pointer" value="{{key}}" ng-repeat="(key, value) in items">{{value.name}}</option>
+				</optgroup>
+				
+			</select>
+		</div>
+		
+		<div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 btn-action-move text-center padding-none">
+			<div class="btn-group box-action">
+				<a class="btn btn-default"  title="" href="javascript:;" ng-click="undoPermissions()"><i class="fa fa-undo"></i></a>
+				<a class="btn btn-default"  title="" href="javascript:;" ng-click="assignPermissions()"><i class="fa fa-share"></i></a>
+			</div>
+		</div>
+
+		<div  class="col-xs-12 col-sm-4 col-md-5 col-lg-5 box-parent-select ">
+			<h5 class="strong text-uppercase">Assigned:</h5>
+			<select data-scrollable multiple="multiple" data-ng-model="selectedItemTo">
+				<optgroup label="{{!placeholder? 'Permissions': placeholder}}">
+					<option class="pointer" value="{{key}}" ng-repeat="(key, value) in itemsAssigned">{{value.name}}</option>
+				</optgroup>
+			</select>
+		</div>
+	</div>
+</div>

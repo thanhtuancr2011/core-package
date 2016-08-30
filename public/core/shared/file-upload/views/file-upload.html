@@ -1,0 +1,41 @@
+<div>
+    <div class="file-note">
+        <div ng-if="fileUpload && file.uniId" ng-repeat="file in fileUpload" class="pull-left file-item">
+            <!-- Button delete file -->
+            <a href="javascript:void(0)" ng-click="deleteFile(file.uniId)">
+                <i class="fa fa-times-circle-o rm-fa"></i>
+            </a>
+            <!-- End Button delete file -->
+
+            <!-- Display icon file with type, name and size of the file -->
+            <a href="javascript:void(0)" class="file-load-bar info-file">
+                <i class="fa pull-left" ng-class="{'fa-picture-o': checkFile(file['type']) == 'image', 'fa-file-o': checkFile(file['type']) != 'image'}"></i>
+                <label class="info-f-f">
+                    <p>{{file.name | limitTo: 5 }}{{file.name.length > 5 ? '...' : '.'}} {{file.name.split('.').pop()}}</p>
+                    <p>{{ file.size | bytes }}</p>
+                </label>
+            </a>
+            <!-- End Display icon file with type, name and size of the file -->
+
+            <!-- File error -->
+            <div class="wrap-progress">
+                <div ng-show="file.progress != '100' && fileError[file.uniId].status!=0" class="progress progress-primary">
+                    <div class="progress progress-bar" style="width: {{file.proccess}}%"></div>
+                </div>
+                <div ng-show="fileError[file.uniId].status==0" class="progress progress-primary pro-f-f">
+                    <div class="progress-error full-width"></div>
+                </div>
+                <small class="text-red" ng-show="fileError[file.uniId].status==0">{{file.error}}</small>
+            </div>
+            <!-- End File error -->
+        </div>
+        
+        <div class="clearfix"></div>
+    </div>
+    <!-- Dragging & Dropping -->
+    <div ng-show="!disabled" ngf-select ngf-accept="'image/*'" ngf-multiple="multipleFile" ngf-drop ngf-change="chooseFile($files)" class="drag-and-drop">
+        <h3>
+            Drag & Drop, click to upload file
+        </h3>
+    </div>
+</div>
