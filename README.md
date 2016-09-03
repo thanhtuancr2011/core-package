@@ -1,8 +1,8 @@
 # Installation
 
-	1. Pull package to project from GITHUB
-	 	Step 1: Open composer.json file.
-	 	Step 2: 
+	1. Pull Package To Your Project From Github
+
+	 	Step 1: Open composer.json file and add:
 	 		+ Add content to repositories and save:
 		 		"core-package": {
 		            "type": "package",
@@ -18,8 +18,12 @@
 		        }
 		    + Add content to require and save:
 		    	"comus/core": "1.0.0"
+		    + Add contebt to autoload => psr-4:
+				"Comus\\Core\\": "vendor/comus/core"
 
-	Install Roles And Permissions For Laravel 5
+		Step 2: Run command "composer update". The package will download into vendor/comus/core.
+
+	2. Install Roles And Permissions For Laravel 5
 
 	composer require bican/roles:2.1.*
 
