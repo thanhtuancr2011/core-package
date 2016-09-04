@@ -18,7 +18,7 @@
 
 	    2. Add content to require and save:
 	    	"comus/core": "1.0.0",
-	    	"laravelcollective/html": "5.3.*"
+	    	"laravelcollective/html": "5.3.*",
 	    	"intervention/image": "~2.1",
 	        "bican/roles": "2.1.*",
 	        "gloudemans/shoppingcart": "~1.3",
@@ -41,7 +41,7 @@
 		        ],
 		        "psr-4": {
 		            "App\\": "app/",
-		            "Comus\\Core": "vendor/comus/core"
+		            "Comus\\Core\\": "vendor/comus/core"
 		        }
 		    },
 
@@ -51,17 +51,9 @@
     		use Comus\Core\Database\UserTableSeeder;
 
     	2. Add contents in class DatabaseSeeder:
-    		$this->call(UsersTableSeeder::class); 
+    		$this->call(UserTableSeeder::class); 
 
-	Step 3: Run command:
-
-		1. Create tables in database
-   			php artisan migrate --path="vendor/comus/core/database/migrations"
-
-   		2. Create default user, role and permission
-   			php artisan db:seed
-
-   	Step 4: Open file config/app.php 
+   	Step 3: Open file config/app.php 
 
 		1. Insert contents to providers:
 			Collective\Html\HtmlServiceProvider::class,
@@ -78,6 +70,14 @@
 	        'Image'     => Intervention\Image\Facades\Image::class,
 	        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 	        'Cart'      => Gloudemans\Shoppingcart\Facades\Cart::class
+
+	Step 4: Run command:
+
+		1. Create tables in database
+   			php artisan migrate --path="vendor/comus/core/database/migrations"
+
+   		2. Create default user, role and permission
+   			php artisan db:seed
 
 # Bower  
 	
