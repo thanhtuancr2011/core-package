@@ -96,106 +96,64 @@
 		2. Create bower.json 
 			2.1 Open bower.json file and add contents
 				{
-				  "name": "Mockup",
-				  "version": "0.0.1",
-				  "authors": [
-				    "Tuan <thanhtuancr2011@gmail.com>"
-				  ],
-				  "description": "Core",
-				  "license": "RLS",
-				  "homepage": "www.crepro-mockup.com",
-				  "private": true,
-				  "dependencies": {
-				    "angular": "1.4.2",
-				    "angular-bootstrap": "~0.14.3",
-				    "angular-resource": "~1.3.14",
-				    "angular-sanitize": "~1.3.15",
-				    "angular-xeditable": "~0.1.8",
-				    "awesome-bootstrap-checkbox": "~0.3.4",
-				    "bower": "*",
-				    "humanize-duration": "~3.2.0",
-				    "install": "~1.0.4",
-				    "jquery-ui": "~1.11.4",
-				    "moment": "~2.10.3",
-				    "ng-file-upload": "~5.0.9",
-				    "ng-table": "~0.5.4",
-				    "ngImgCrop": "~0.3.2",
-				    "select2": "~4.0.0",
-				    "bootstrap": "~3.3.5",
-				    "fontawesome": "~4.4.0",
-				    "ui-iconpicker": "~0.1.4",
-				    "ckeditor": "#full/4.3.3",
-				    "components-font-awesome": "~4.4.0",
-				    "metisMenu": "2.0.2",
-				    "jquery.maskedinput": "~1.4.1",
-				    "ckeditor": "#full/4.3.3",
-				    "jquery-maskmoney": "~3.0.2"
-				  },
-				  "resolutions": {
-				    "angular": "1.4.2"
-				  },
-				  "overrides": {
-				    "cryptojslib": {
-				      "main": [
-				        "./rollups/pbkdf2.js",
-				        "./rollups/aes.js"
-				      ]
-				    }
-				  },
-				  "devDependencies": {
-				    "compass-breakpoint": "breakpoint-sass#~2.6.1"
-				  }
+					"name": "Mockup",
+					"version": "0.0.1",
+					"authors": [
+						"Tuan <thanhtuancr2011@gmail.com>"
+					],
+					"description": "Core",
+					"license": "RLS",
+					"homepage": "www.crepro-mockup.com",
+					"private": true,
+					"dependencies": {
+						"angular": "1.4.2",
+						"angular-bootstrap": "~0.14.3",
+						"angular-resource": "~1.3.14",
+						"angular-sanitize": "~1.3.15",
+						"angular-xeditable": "~0.1.8",
+						"awesome-bootstrap-checkbox": "~0.3.4",
+						"bower": "*",
+						"humanize-duration": "~3.2.0",
+						"install": "~1.0.4",
+						"jquery-ui": "~1.11.4",
+						"moment": "~2.10.3",
+						"ng-file-upload": "~5.0.9",
+						"ng-table": "~0.5.4",
+						"ngImgCrop": "~0.3.2",
+						"select2": "~4.0.0",
+						"bootstrap": "~3.3.5",
+						"fontawesome": "~4.4.0",
+						"ui-iconpicker": "~0.1.4",
+						"ckeditor": "#full/4.3.3",
+						"components-font-awesome": "~4.4.0",
+						"metisMenu": "2.0.2",
+						"jquery.maskedinput": "~1.4.1",
+						"ckeditor": "#full/4.3.3",
+						"jquery-maskmoney": "~3.0.2"
+					},
+					"resolutions": {
+						"angular": "1.4.2"
+					},
+					"overrides": {
+						"cryptojslib": {
+						  "main": [
+						    "./rollups/pbkdf2.js",
+						    "./rollups/aes.js"
+						  ]
+						}
+					},
+					"devDependencies": {
+						"compass-breakpoint": "breakpoint-sass#~2.6.1"
+					}
 				}
 
 
-	Step 2: Open file .bowerrc and edit to
-
-    {
-	  "directory": "public/bower_components"
-	} 
-
-	Add framework and plugin to file bower.json
-
-	"angular": "1.4.2",
-    "angular-bootstrap": "~0.14.3",
-    "angular-resource": "~1.3.14",
-    "angular-sanitize": "~1.3.15",
-    "angular-xeditable": "~0.1.8",
-    "awesome-bootstrap-checkbox": "~0.3.4",
-    "bower": "*",
-    "humanize-duration": "~3.2.0",
-    "install": "~1.0.4",
-    "jquery-ui": "~1.11.4",
-    "moment": "~2.10.3",
-    "ng-file-upload": "~5.0.9",
-    "ng-table": "~0.5.4",
-    "ngImgCrop": "~0.3.2",
-    "select2": "~4.0.0",
-    "bootstrap": "~3.3.5",
-    "fontawesome": "~4.4.0",
-    "ui-iconpicker": "~0.1.4",
-    "ckeditor": "#full/4.3.3",
-    "components-font-awesome": "~4.4.0",
-    "metisMenu": "2.0.2"
-	
-	And run bower update in command
-	
-# Configuation
-
-	Publish the package config file and migrations and resources to your application. Run these commands inside your terminal
-	
-	php artisan vendor:publish --provider="Comus\Core\CoreServiceProvider"
-	
-	public files migrations
-	php artisan vendor:publish --provider="Comus\Core\CoreServiceProvider" --tag='migrations'
-	
-	public files config
-	php artisan vendor:publish --provider="Comus\Core\CoreServiceProvider" --tag='config'
-
-	public resource
-	php artisan vendor:publish --provider="Comus\Core\CoreServiceProvider" --tag='resource'
+	Step 3: Install all js with command
+		1. Run command 
+			bower update => All package will download to bower_components folder inside public folder
 
 # Usage
+
 	## Include js
 	    {!! Html::script('js/vendor-core.min.js')!!}
 	    {!! Html::script('bower_components/angular/angular.js')!!}
@@ -212,6 +170,7 @@
         {!! Html::script('app-users-rowboat/app.js')!!}
         {!! Html::script('app-users-rowboat/config.js')!!} 
         {!! Html::script('bower_components/jquery.maskedinput/dist/jquery.maskedinput.min.js')!!}
+
 	## Include css
 	    {!! Html::style('bower_components/bootstrap/dist/css/bootstrap.min.css')!!}
 	    {!! Html::style('bower_components/components-font-awesome/css/font-awesome.min.css')!!}
