@@ -1,27 +1,61 @@
-# Installation
+# Pull Package To Your Project From Github:
 
-	1. Pull Package To Your Project From Github
+ 	Step 1: Open composer.json file and add:
+ 		1. Add content to repositories and save:
+	 		"core-package": {
+	            "type": "package",
+	            "package": {
+	                "name": "comus/core",
+	                "version": "1.0.0",
+	                "source": {
+	                    "url": "https://github.com/thanhtuancr2011/core-package",
+	                    "type": "git",
+	                    "reference": "master"
+	                }
+	            }
+	        }
+	    2. Add content to require and save:
+	    	"comus/core": "1.0.0",
+	    	"laravelcollective/html": "5.3.*"
+	    	"intervention/image": "~2.1",
+	        "bican/roles": "2.1.*",
+	        "gloudemans/shoppingcart": "~1.3",
+	        "laravel/socialite": "~2.0"
+	    
+	Step 2: 
+		1. Run command 
+			composer update => The package core will download into vendor/comus/core.
+			php artisan vendor:publish
 
-	 	Step 1: Open composer.json file and add:
-	 		+ Add content to repositories and save:
-		 		"core-package": {
-		            "type": "package",
-		            "package": {
-		                "name": "comus/core",
-		                "version": "1.0.0",
-		                "source": {
-		                    "url": "https://github.com/thanhtuancr2011/core-package",
-		                    "type": "git",
-		                    "reference": "master"
-		                }
-		            }
-		        }
-		    + Add content to require and save:
-		    	"comus/core": "1.0.0"
-		    + Add contebt to autoload => psr-4:
-				"Comus\\Core\\": "vendor/comus/core"
+# Configure package:
 
-		Step 2: Run command "composer update". The package will download into vendor/comus/core.
+	    Step 1: Open file database/seeds/DatabaseSeeder.php
+	    	1. Add contents before class DatabaseSeeder:
+	    		use Comus\Core\Database\UserTableSeeder;
+	    	2. Add content in class DatabaseSeeder:
+	    		$this->call(UsersTableSeeder::class); 
+
+		Step 2: Run command:
+			1. Create tables in database
+	   			php artisan migrate --path="vendor/comus/core/database/migrations"
+	   		2. Create default user, role and permission
+	   			php artisan db:seed
+
+	   	Step 3: Open file config/app.php 
+			1. Insert contents to providers:
+				Collective\Html\HtmlServiceProvider::class,
+		        Intervention\Image\ImageServiceProvider::class,
+		        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+				/* Package  core */
+		        Comus\Core\CoreServiceProvider::class,
+		        Bican\Roles\RolesServiceProvider::class,
+		        Laravel\Socialite\SocialiteServiceProvider::class
+		    2. Insert contents to aliases:
+		    	'Form'      => Collective\Html\FormFacade::class,
+		        'Html'      => Collective\Html\HtmlFacade::class,
+		        'Image'     => Intervention\Image\Facades\Image::class,
+		        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+		        'Cart'      => Gloudemans\Shoppingcart\Facades\Cart::class
 
 	2. Install Roles And Permissions For Laravel 5
 
