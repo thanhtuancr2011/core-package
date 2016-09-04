@@ -1,6 +1,7 @@
 # Pull Package To Your Project From Github:
 
  	Step 1: Open composer.json file and add:
+
  		1. Add content to repositories and save:
 	 		"core-package": {
 	            "type": "package",
@@ -14,6 +15,7 @@
 	                }
 	            }
 	        }
+
 	    2. Add content to require and save:
 	    	"comus/core": "1.0.0",
 	    	"laravelcollective/html": "5.3.*"
@@ -23,74 +25,130 @@
 	        "laravel/socialite": "~2.0"
 	    
 	Step 2: 
+
 		1. Run command 
 			composer update => The package core will download into vendor/comus/core.
 			php artisan vendor:publish
 
 # Configure package:
 
-	    Step 1: Open file database/seeds/DatabaseSeeder.php
-	    	1. Add contents before class DatabaseSeeder:
-	    		use Comus\Core\Database\UserTableSeeder;
-	    	2. Add content in class DatabaseSeeder:
-	    		$this->call(UsersTableSeeder::class); 
+	Step 1: Open file composer.json 
 
-		Step 2: Run command:
-			1. Create tables in database
-	   			php artisan migrate --path="vendor/comus/core/database/migrations"
-	   		2. Create default user, role and permission
-	   			php artisan db:seed
+		1. Add contents 
+			"autoload": {
+		        "classmap": [
+		            "database"
+		        ],
+		        "psr-4": {
+		            "App\\": "app/",
+		            "Comus\\Core": "vendor/comus/core"
+		        }
+		    },
 
-	   	Step 3: Open file config/app.php 
-			1. Insert contents to providers:
-				Collective\Html\HtmlServiceProvider::class,
-		        Intervention\Image\ImageServiceProvider::class,
-		        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
-				/* Package  core */
-		        Comus\Core\CoreServiceProvider::class,
-		        Bican\Roles\RolesServiceProvider::class,
-		        Laravel\Socialite\SocialiteServiceProvider::class
-		    2. Insert contents to aliases:
-		    	'Form'      => Collective\Html\FormFacade::class,
-		        'Html'      => Collective\Html\HtmlFacade::class,
-		        'Image'     => Intervention\Image\Facades\Image::class,
-		        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-		        'Cart'      => Gloudemans\Shoppingcart\Facades\Cart::class
+    Step 2: Open file database/seeds/DatabaseSeeder.php
 
-	2. Install Roles And Permissions For Laravel 5
+    	1. Add contents before class DatabaseSeeder:
+    		use Comus\Core\Database\UserTableSeeder;
 
-	composer require bican/roles:2.1.*
+    	2. Add contents in class DatabaseSeeder:
+    		$this->call(UsersTableSeeder::class); 
 
-	Add package users to file composer.json
-	
-	"psr-4": {
-		"Comus\\Core\\": "packages/core"
-	}
-	
-	Then in your config/app.php add
-	
-	Bican\Roles\RolesServiceProvider::class,
-    Comus\Core\CoreServiceProvider::class
+	Step 3: Run command:
 
-    to provider array
+		1. Create tables in database
+   			php artisan migrate --path="vendor/comus/core/database/migrations"
 
-    And add
+   		2. Create default user, role and permission
+   			php artisan db:seed
 
-    'Image'     => Intervention\Image\Facades\Image::class
+   	Step 4: Open file config/app.php 
 
-    to aliases array
+		1. Insert contents to providers:
+			Collective\Html\HtmlServiceProvider::class,
+	        Intervention\Image\ImageServiceProvider::class,
+	        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+			/* Package  core */
+	        Comus\Core\CoreServiceProvider::class,
+	        Bican\Roles\RolesServiceProvider::class,
+	        Laravel\Socialite\SocialiteServiceProvider::class
 
-    You must change the content of the file app/Http/Middleware/Authenticate.php
-
-	return redirect()->guest('login');
-
-	to
-
-	return redirect()->guest('auth/login');
+	    2. Insert contents to aliases:
+	    	'Form'      => Collective\Html\FormFacade::class,
+	        'Html'      => Collective\Html\HtmlFacade::class,
+	        'Image'     => Intervention\Image\Facades\Image::class,
+	        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+	        'Cart'      => Gloudemans\Shoppingcart\Facades\Cart::class
 
 # Bower  
+	
+	Step 1: Install power
+		1. Run command 
+			sudo npm -g install bower
 
-	Edit file .bowerrc to 
+	Step 2: Create two file in root of your project
+
+		1. Create .bowerrc file 
+			1.1 Open .bowerrc file and add contents
+				{
+				  	"directory": "public/bower_components"
+				} 
+
+		2. Create bower.json 
+			2.1 Open bower.json file and add contents
+				{
+				  "name": "Mockup",
+				  "version": "0.0.1",
+				  "authors": [
+				    "Tuan <thanhtuancr2011@gmail.com>"
+				  ],
+				  "description": "Core",
+				  "license": "RLS",
+				  "homepage": "www.crepro-mockup.com",
+				  "private": true,
+				  "dependencies": {
+				    "angular": "1.4.2",
+				    "angular-bootstrap": "~0.14.3",
+				    "angular-resource": "~1.3.14",
+				    "angular-sanitize": "~1.3.15",
+				    "angular-xeditable": "~0.1.8",
+				    "awesome-bootstrap-checkbox": "~0.3.4",
+				    "bower": "*",
+				    "humanize-duration": "~3.2.0",
+				    "install": "~1.0.4",
+				    "jquery-ui": "~1.11.4",
+				    "moment": "~2.10.3",
+				    "ng-file-upload": "~5.0.9",
+				    "ng-table": "~0.5.4",
+				    "ngImgCrop": "~0.3.2",
+				    "select2": "~4.0.0",
+				    "bootstrap": "~3.3.5",
+				    "fontawesome": "~4.4.0",
+				    "ui-iconpicker": "~0.1.4",
+				    "ckeditor": "#full/4.3.3",
+				    "components-font-awesome": "~4.4.0",
+				    "metisMenu": "2.0.2",
+				    "jquery.maskedinput": "~1.4.1",
+				    "ckeditor": "#full/4.3.3",
+				    "jquery-maskmoney": "~3.0.2"
+				  },
+				  "resolutions": {
+				    "angular": "1.4.2"
+				  },
+				  "overrides": {
+				    "cryptojslib": {
+				      "main": [
+				        "./rollups/pbkdf2.js",
+				        "./rollups/aes.js"
+				      ]
+				    }
+				  },
+				  "devDependencies": {
+				    "compass-breakpoint": "breakpoint-sass#~2.6.1"
+				  }
+				}
+
+
+	Step 2: Open file .bowerrc and edit to
 
     {
 	  "directory": "public/bower_components"
@@ -160,5 +218,6 @@
 	    {!! Html::style('bower_components/ng-table/dist/ng-table.min.css') !!}
 	    {!! Html::style('bower_components/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') !!}
 	    {!! Html::style('css/rowboat/user.css')!!}
+
 # License
 	This package is private software distributed under the terms of the MIT license.
